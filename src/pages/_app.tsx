@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
+import theme from "../theme";
 import "@fontsource/catamaran/300.css";
 import "@fontsource/catamaran/400.css";
 import "@fontsource/catamaran/500.css";
@@ -10,7 +11,7 @@ import "@fontsource/catamaran/900.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Component {...pageProps} />
     </ChakraProvider>
   );

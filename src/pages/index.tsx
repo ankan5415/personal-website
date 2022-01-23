@@ -1,19 +1,26 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
+import { SimpleGrid } from "@chakra-ui/react";
 import notion from "../util/notion";
+import ImageBackground from "../components/ImageBackground";
+import moment from "moment";
+import { filterNotionLinks } from "../util/notion/filterNotionData";
 
 interface iHomeProps {
   links: Object;
   skills: Object;
   experiences: Object;
+  age: String;
 }
 
-const Home: NextPage<iHomeProps> = ({ links, skills, experiences }) => {
+const Home: NextPage<iHomeProps> = ({ links, skills, experiences, age }) => {
   return (
-    <div>
-      <div>Hello!</div>
-    </div>
+    <SimpleGrid
+      w="100vw"
+      minH="100vh"
+      columns={{ base: 2, sm: 1, md: 2, lg: 2 }}
+    >
+      <ImageBackground age={age} links={links} />
+    </SimpleGrid>
   );
 };
 
@@ -28,7 +35,6 @@ export async function getStaticProps() {
   };
   const links = await notion.databases.query({
     database_id: NT_LINKS_DB,
-    filter: filtrationMethod,
   });
   const skills = await notion.databases.query({
     database_id: NT_SKILLS_DB,
@@ -39,11 +45,14 @@ export async function getStaticProps() {
     filter: filtrationMethod,
   });
 
+  const age = moment().diff(moment("20050411", "YYYYMMDD"), "year");
+
   return {
     props: {
-      links,
+      links: filterNotionLinks(links),
       skills,
       experiences,
+      age,
     },
     revalidate: 60,
   };
