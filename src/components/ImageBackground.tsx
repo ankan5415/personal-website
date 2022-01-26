@@ -10,13 +10,18 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import bgImage from "../public/background-image.jpeg";
-import { iNotionLink } from "../util/notion/filterNotionData";
+import {
+  iNotionExperience,
+  iNotionLink,
+} from "../util/notion/filterNotionData";
 import * as IoIcons from "react-icons/io";
 import CardLink from "./CardLink";
+import IconLink from "./IconLink";
 
 interface iImageBackground {
   age: number | String;
   links: iNotionLink[];
+  experiences: iNotionExperience[];
 }
 
 interface iDynamicIcon {
@@ -28,10 +33,12 @@ const DynamicIcon = ({ name }: iDynamicIcon) => {
   return <IconComponent />;
 };
 
-const ImageBackground = ({ age, links }: iImageBackground) => {
-  const { toggleColorMode, colorMode } = useColorMode();
+const ImageBackground = ({ age, links, experiences }: iImageBackground) => {
+  const { toggleColorMode } = useColorMode();
   const iconLinks = links.filter((link) => !!link.icon);
   const cardLinks = links.filter((link) => !link.icon);
+  const descriptor =
+    experiences && experiences.find((el) => el.type === "Descriptor");
   return (
     <Center
       bgImage={`linear-gradient(to left top, rgba(26, 81, 64, 0.4), rgba(9, 35, 62, 0.4)),
@@ -39,24 +46,32 @@ const ImageBackground = ({ age, links }: iImageBackground) => {
       backgroundSize="cover"
       backgroundPosition={"center"}
     >
-      <Stack mt={40} spacing="5">
+      <Stack mt="18rem" spacing="5">
         <Heading as="h1" color={"gray.200"} textAlign="center" py={5}>
           Hey, I'm Ankur!
         </Heading>
-        <Text as="h3" fontSize="xl" color="gray.300" textAlign={"center"}>
-          {`I'm a ${age}-year-old who loves learning and building things`}
-        </Text>
+        <Stack>
+          <Text
+            as="h3"
+            fontSize="2xl"
+            color="gray.300"
+            textAlign={"center"}
+            fontWeight={500}
+          >
+            {`I'm a ${age}-year-old who loves learning and building things`}
+          </Text>
+          {descriptor && (
+            <Text as="h3" fontSize="lg" color="gray.300" textAlign={"center"}>
+              {descriptor.description}
+            </Text>
+          )}
+        </Stack>
         <Stack direction="row" alignSelf={"center"} spacing="5">
           {iconLinks.map((link, index) => {
             return (
-              <IconButton
-                as="a"
-                href={link.link}
-                fontSize="4xl"
+              <IconLink
+                href={link.link!}
                 key={index}
-                variant="ghost"
-                color="gray.200"
-                aria-label="icon"
                 icon={<DynamicIcon name={link.icon!} />}
               />
             );

@@ -4,12 +4,10 @@ import { iNotionLink } from "../util/notion/filterNotionData";
 
 interface iCardLink {
   link: iNotionLink;
-  key: number;
 }
-const CardLink = ({ link, key }: iCardLink) => {
+const CardLink = ({ link }: iCardLink) => {
   return (
     <Button
-      key={key}
       as="a"
       href={link.link}
       bgColor={useColorModeValue("#f5f5f5", "#1f1f1f")}

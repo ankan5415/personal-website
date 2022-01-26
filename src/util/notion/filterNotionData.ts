@@ -26,3 +26,33 @@ export const filterNotionLinks = (links: Object) => {
   });
   return res as iNotionLink[];
 };
+
+export interface iNotionExperience {
+  pageId: string;
+  created_time: string;
+  archived: boolean;
+  last_edited_time: string;
+  display: boolean;
+  description: string;
+  link?: string;
+  name: string;
+  type: "About Me" | "Work" | "Competition" | "Education" | "Descriptor";
+}
+export const filterNotionExperiences = (experiences: Object) => {
+  const { results } = experiences;
+  const res = results.map((page) => {
+    return {
+      pageId: page.id,
+      created_time: page.created_time,
+      archived: page.archived,
+      last_edited_time: page.last_edited_time,
+      description:
+        page.properties.Description?.rich_text[0]?.plain_text || null,
+      display: page.properties.Display?.checkbox,
+      name: page.properties.Name?.title[0]?.plain_text,
+      link: page.properties.Link?.url || null,
+      type: page.properties.Type?.select?.name,
+    };
+  });
+  return res as iNotionExperience[];
+};
