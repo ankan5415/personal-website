@@ -9,7 +9,6 @@ import {
   IconButton,
   useColorModeValue,
 } from "@chakra-ui/react";
-import bgImage from "../public/background-image.jpeg";
 import {
   iNotionExperience,
   iNotionLink,
@@ -42,7 +41,7 @@ const HeroView = ({ age, links, experiences }: iHeroView) => {
   return (
     <Center
       bgImage={`linear-gradient(to left top, rgba(26, 81, 64, 0.4), rgba(9, 35, 62, 0.4)),
-      url('${bgImage.src}')`}
+      url('/images/background-image.jpeg')`}
       backgroundSize="cover"
       backgroundPosition={"center"}
     >

@@ -8,7 +8,7 @@ export default class Document extends NextDocument {
       <Html lang="en">
         <Head />
         <title>Ankur Boyed</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/favicon.ico" />
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />

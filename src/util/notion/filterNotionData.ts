@@ -9,8 +9,11 @@ export interface iNotionLink {
   name: string;
   type: "Social" | "Clickable";
 }
+
 export const filterNotionLinks = (links: Object) => {
+  // @ts-expect-error
   const { results } = links;
+  // @ts-expect-error
   const res = results.map((page) => {
     return {
       pageId: page.id,
@@ -42,7 +45,9 @@ export interface iNotionExperience {
   type: "About Me" | "Work" | "Competition" | "Education" | "Descriptor";
 }
 export const filterNotionExperiences = (experiences: Object) => {
+  // @ts-expect-error
   const { results } = experiences;
+  // @ts-expect-error
   const res = results.map((page) => {
     return {
       pageId: page.id,
@@ -72,7 +77,9 @@ export interface iNotionSkill {
   type: "Native Speaker" | "Exploring" | "Learning About";
 }
 export const filterNotionSkills = (skills: Object) => {
+  // @ts-expect-error
   const { results } = skills;
+  // @ts-expect-error
   const res = results.map((page) => {
     return {
       pageId: page.id,

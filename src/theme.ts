@@ -11,6 +11,7 @@ const theme = extendTheme({
     body: "Catamaran",
   },
   styles: {
+    // @ts-expect-error
     global: (props) => ({
       body: {
         bg: mode("gray.100", "#1f1f1f")(props),
