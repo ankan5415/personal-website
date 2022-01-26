@@ -47,7 +47,7 @@ const HeroView = ({ age, links, experiences }: iHeroView) => {
     >
       <Stack mt="18rem" spacing="5">
         <Heading as="h1" color={"gray.200"} textAlign="center" py={5}>
-          Hey, I'm Ankur!
+          Hey, I&#39;m Ankur!
         </Heading>
         <Stack>
           <Text
