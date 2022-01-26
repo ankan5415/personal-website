@@ -3,14 +3,7 @@ import {
   iNotionExperience,
   iNotionSkill,
 } from "../util/notion/filterNotionData";
-import {
-  Heading,
-  Text,
-  Stack,
-  Box,
-  useColorMode,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Heading, Text, Stack, Box, useColorModeValue } from "@chakra-ui/react";
 import moment from "moment";
 export interface IExperiences {
   skills: iNotionSkill[];
@@ -49,8 +42,8 @@ const ExperiencesView = ({ skills, experiences }: IExperiences) => {
           bgGradient="linear(to-r,#2a54f5,#33e5bb)"
           bgClip="text"
           textTransform="uppercase"
-          fontSize="lg"
-          letterSpacing={1}
+          fontSize={16}
+          letterSpacing="wide"
         >
           About Me
         </Heading>
@@ -69,9 +62,8 @@ const ExperiencesView = ({ skills, experiences }: IExperiences) => {
                 </Text>
                 {skillNames.map((skillName, index) => {
                   return (
-                    <>
+                    <React.Fragment key={index}>
                       <Text
-                        key={index}
                         as="span"
                         bgGradient="linear(0deg,#2a54f5,#31a6ce)"
                         bgClip="text"
@@ -90,7 +82,7 @@ const ExperiencesView = ({ skills, experiences }: IExperiences) => {
                           &#9679;
                         </Text>
                       )}
-                    </>
+                    </React.Fragment>
                   );
                 })}
               </Box>
@@ -106,36 +98,44 @@ const ExperiencesView = ({ skills, experiences }: IExperiences) => {
               bgGradient="linear(to-r,#2a54f5,#33e5bb)"
               bgClip="text"
               textTransform="uppercase"
-              fontSize="lg"
-              letterSpacing={1}
+              fontSize={16}
+              letterSpacing="wide"
             >
               {type}
             </Heading>
             {experiences.map((experience, index) => {
-              let experienceText = moment(experience.start).format("MMM YYYY");
-              if (experience.isPresent) experienceText += " - Present";
+              let experienceDate = moment(experience.start).format("MMM YYYY");
+              if (experience.isPresent) experienceDate += " - Present";
               else if (experience.end)
-                experienceText += ` - ${moment(experience.end).format(
+                experienceDate += ` - ${moment(experience.end).format(
                   "MMM YYYY"
                 )}`;
               return (
-                <Stack key={index}>
-                  <Heading
-                    as="a"
-                    href={experience.link}
-                    fontSize="lg"
-                    fontWeight="bold"
-                    className="strike"
-                    w="fit-content"
-                    color={mainTextColor}
-                  >
-                    {experience.name}
-                  </Heading>
-                  {experience.start && (
-                    <Text color={mainTextColor} fontStyle="italic">
-                      {experienceText}
-                    </Text>
-                  )}
+                <Stack key={index} spacing={4}>
+                  <Stack>
+                    <Heading
+                      as="a"
+                      href={experience.link}
+                      fontSize="lg"
+                      fontWeight="bold"
+                      className="strike"
+                      w="fit-content"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      color={mainTextColor}
+                    >
+                      {experience.name}
+                    </Heading>
+                    {experience.start && (
+                      <Text
+                        color={mainTextColor}
+                        fontStyle="italic"
+                        fontWeight="light"
+                      >
+                        {experienceDate}
+                      </Text>
+                    )}
+                  </Stack>
                   <Text color={mainTextColor}>{experience.description}</Text>
                 </Stack>
               );

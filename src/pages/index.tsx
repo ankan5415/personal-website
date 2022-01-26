@@ -12,7 +12,7 @@ import {
   iNotionSkill,
 } from "../util/notion/filterNotionData";
 import ExperiencesView from "../components/ExperiencesView";
-
+import Head from "next/head";
 interface iHomeProps {
   links: iNotionLink[];
   skills: iNotionSkill[];
@@ -22,14 +22,19 @@ interface iHomeProps {
 
 const Home: NextPage<iHomeProps> = ({ links, skills, experiences, age }) => {
   return (
-    <SimpleGrid
-      w="100vw"
-      minH="100vh"
-      columns={{ base: 2, sm: 1, md: 2, lg: 2 }}
-    >
-      <HeroView age={age} links={links} experiences={experiences} />
-      <ExperiencesView experiences={experiences} skills={skills} />
-    </SimpleGrid>
+    <>
+      <Head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
+      <SimpleGrid
+        w="100vw"
+        minH="100vh"
+        columns={{ base: 2, sm: 1, md: 1, lg: 2 }}
+      >
+        <HeroView age={age} links={links} experiences={experiences} />
+        <ExperiencesView experiences={experiences} skills={skills} />
+      </SimpleGrid>
+    </>
   );
 };
 

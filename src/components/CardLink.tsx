@@ -13,6 +13,8 @@ const CardLink = ({ link }: iCardLink) => {
       bgColor={useColorModeValue("#f5f5f5", "#1f1f1f")}
       px="15px"
       _hover={{ boxShadow: "3xl" }}
+      target="_blank"
+      rel="noopener noreferrer"
     >
       <Text bgGradient="linear(to-r,#2a54f5,#33e5bb);)" bgClip="text">
         {link.name}

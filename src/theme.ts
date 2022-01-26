@@ -1,4 +1,5 @@
 import { extendTheme } from "@chakra-ui/react";
+import { mode } from "@chakra-ui/theme-tools";
 
 const theme = extendTheme({
   config: {
@@ -8,6 +9,13 @@ const theme = extendTheme({
   fonts: {
     heading: "Catamaran",
     body: "Catamaran",
+  },
+  styles: {
+    global: (props) => ({
+      body: {
+        bg: mode("gray.100", "#1f1f1f")(props),
+      },
+    }),
   },
 });
 
