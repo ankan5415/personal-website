@@ -23,9 +23,6 @@ interface iHomeProps {
 const Home: NextPage<iHomeProps> = ({ links, skills, experiences, age }) => {
   return (
     <>
-      <Head>
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
       <SimpleGrid
         w="100vw"
         minH="100vh"

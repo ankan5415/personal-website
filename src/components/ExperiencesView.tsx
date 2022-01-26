@@ -35,7 +35,12 @@ const ExperiencesView = ({ skills, experiences }: IExperiences) => {
   const allSkills = getSkillsData(skills);
   const filteredExperiences = getExperiencesData(experiences);
   return (
-    <Stack spacing={10} p={14}>
+    <Stack
+      spacing={10}
+      p={14}
+      overflowY={{ base: "scroll", sm: "auto", md: "auto", lg: "scroll" }}
+      h={{ base: "100vh", sm: "fit-content", md: "fit-content", lg: "100vh" }}
+    >
       <Stack spacing={5}>
         <Heading
           as="h4"
