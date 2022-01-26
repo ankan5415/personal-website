@@ -36,6 +36,9 @@ export interface iNotionExperience {
   description: string;
   link?: string;
   name: string;
+  start?: string;
+  end?: string;
+  isPresent?: boolean;
   type: "About Me" | "Work" | "Competition" | "Education" | "Descriptor";
 }
 export const filterNotionExperiences = (experiences: Object) => {
@@ -51,6 +54,9 @@ export const filterNotionExperiences = (experiences: Object) => {
       display: page.properties.Display?.checkbox,
       name: page.properties.Name?.title[0]?.plain_text,
       link: page.properties.Link?.url || null,
+      start: page.properties.Date?.date?.start || null,
+      end: page.properties.Date?.date?.end || null,
+      isPresent: page.properties.IsPresent?.checkbox || null,
       type: page.properties.Type?.select?.name,
     };
   });

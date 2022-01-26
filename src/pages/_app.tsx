@@ -8,7 +8,7 @@ import "@fontsource/catamaran/600.css";
 import "@fontsource/catamaran/700.css";
 import "@fontsource/catamaran/800.css";
 import "@fontsource/catamaran/900.css";
-
+import "../styles.css";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>

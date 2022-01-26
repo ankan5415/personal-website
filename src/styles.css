@@ -1,0 +1,25 @@
+.strike {
+  display: inline-block;
+  position: relative;
+}
+
+.strike::after {
+  background: -webkit-linear-gradient(45deg, #2a54f5 0%, #33e5bb 100%);
+  background: linear-gradient(45deg, #2a54f5 0%, #33e5bb 100%);
+  display: block;
+  content: "";
+  width: 0%;
+  height: 4px;
+  position: absolute;
+  bottom: 10%;
+  z-index: -1;
+
+  -webkit-transition: width 1s;
+  -moz-transition: width 1s;
+  -o-transition: width 1s;
+  transition: width 1s;
+}
+
+.strike:hover::after {
+  width: 100%;
+}
