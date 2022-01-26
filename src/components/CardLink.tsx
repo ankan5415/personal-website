@@ -14,7 +14,7 @@ const CardLink = ({ link }: iCardLink) => {
       px="15px"
       _hover={{ boxShadow: "3xl" }}
     >
-      <Text bgGradient="linear(to-l,#2a54f5,#33e5bb);)" bgClip="text">
+      <Text bgGradient="linear(to-r,#2a54f5,#33e5bb);)" bgClip="text">
         {link.name}
       </Text>
     </Button>

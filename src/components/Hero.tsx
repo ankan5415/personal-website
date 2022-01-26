@@ -18,7 +18,7 @@ import * as IoIcons from "react-icons/io";
 import CardLink from "./CardLink";
 import IconLink from "./IconLink";
 
-interface iImageBackground {
+interface iHero {
   age: number | String;
   links: iNotionLink[];
   experiences: iNotionExperience[];
@@ -33,7 +33,7 @@ const DynamicIcon = ({ name }: iDynamicIcon) => {
   return <IconComponent />;
 };
 
-const ImageBackground = ({ age, links, experiences }: iImageBackground) => {
+const Hero = ({ age, links, experiences }: iHero) => {
   const { toggleColorMode } = useColorMode();
   const iconLinks = links.filter((link) => !!link.icon);
   const cardLinks = links.filter((link) => !link.icon);
@@ -101,4 +101,4 @@ const ImageBackground = ({ age, links, experiences }: iImageBackground) => {
   );
 };
 
-export default ImageBackground;
+export default Hero;

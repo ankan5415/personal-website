@@ -56,3 +56,27 @@ export const filterNotionExperiences = (experiences: Object) => {
   });
   return res as iNotionExperience[];
 };
+export interface iNotionSkill {
+  pageId: string;
+  created_time: string;
+  archived: boolean;
+  last_edited_time: string;
+  display: boolean;
+  name: string;
+  type: "Native Speaker" | "Exploring" | "Learning About";
+}
+export const filterNotionSkills = (skills: Object) => {
+  const { results } = skills;
+  const res = results.map((page) => {
+    return {
+      pageId: page.id,
+      created_time: page.created_time,
+      archived: page.archived,
+      last_edited_time: page.last_edited_time,
+      display: page.properties.Display?.checkbox,
+      name: page.properties.Name?.title[0]?.plain_text,
+      type: page.properties.Type?.select?.name,
+    };
+  });
+  return res as iNotionSkill[];
+};

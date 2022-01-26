@@ -1,18 +1,21 @@
 import type { NextPage } from "next";
 import { SimpleGrid } from "@chakra-ui/react";
 import notion from "../util/notion";
-import ImageBackground from "../components/ImageBackground";
+import Hero from "../components/Hero";
 import moment from "moment";
 import {
   filterNotionExperiences,
   filterNotionLinks,
+  filterNotionSkills,
   iNotionExperience,
   iNotionLink,
+  iNotionSkill,
 } from "../util/notion/filterNotionData";
+import Experiences from "../components/Experiences";
 
 interface iHomeProps {
   links: iNotionLink[];
-  skills: Object;
+  skills: iNotionSkill[];
   experiences: iNotionExperience[];
   age: String;
 }
@@ -24,7 +27,8 @@ const Home: NextPage<iHomeProps> = ({ links, skills, experiences, age }) => {
       minH="100vh"
       columns={{ base: 2, sm: 1, md: 2, lg: 2 }}
     >
-      <ImageBackground age={age} links={links} experiences={experiences} />
+      <Hero age={age} links={links} experiences={experiences} />
+      <Experiences experiences={experiences} skills={skills} />
     </SimpleGrid>
   );
 };
@@ -55,7 +59,7 @@ export async function getStaticProps() {
   return {
     props: {
       links: filterNotionLinks(links),
-      skills,
+      skills: filterNotionSkills(skills),
       experiences: filterNotionExperiences(experiences),
       age,
     },
