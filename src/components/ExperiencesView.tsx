@@ -38,8 +38,18 @@ const ExperiencesView = ({ skills, experiences }: IExperiences) => {
     <Stack
       spacing={10}
       p={14}
-      overflowY={{ base: "scroll", sm: "auto", md: "auto", lg: "scroll" }}
-      h={{ base: "100vh", sm: "fit-content", md: "fit-content", lg: "100vh" }}
+      overflowY={{
+        base: "auto",
+        sm: "auto",
+        md: "auto",
+        lg: "scroll",
+      }}
+      h={{
+        base: "auto",
+        sm: "fit-content",
+        md: "fit-content",
+        lg: "100vh",
+      }}
     >
       <Stack spacing={5}>
         <Heading

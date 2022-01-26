@@ -26,7 +26,7 @@ const Home: NextPage<iHomeProps> = ({ links, skills, experiences, age }) => {
       <SimpleGrid
         w="100vw"
         minH="100vh"
-        columns={{ base: 2, sm: 1, md: 1, lg: 2 }}
+        columns={{ base: 1, sm: 1, md: 1, lg: 2 }}
       >
         <HeroView age={age} links={links} experiences={experiences} />
         <ExperiencesView experiences={experiences} skills={skills} />
