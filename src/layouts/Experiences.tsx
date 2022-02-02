@@ -1,22 +1,12 @@
 import React from "react";
-import {
-  iNotionExperience,
-  iNotionSkill,
-} from "../util/notion/filterNotionData";
+import { iNotionExperience, iNotionSkill } from "../util/notion";
 import { Heading, Text, Stack, Box, useColorModeValue } from "@chakra-ui/react";
 import moment from "moment";
+import Skills from "@components/Skills";
 export interface IExperiences {
   skills: iNotionSkill[];
   experiences: iNotionExperience[];
 }
-
-const getSkillsData = (skills: iNotionSkill[]) => {
-  const res = new Map<String, String[]>();
-  skills.forEach((el) => {
-    res.set(el.type, [...(res.get(el.type) ?? []), el.name]);
-  });
-  return Array.from(res.entries());
-};
 
 const getExperiencesData = (experiences: iNotionExperience[]) => {
   const res = new Map<String, iNotionExperience[]>();
@@ -28,11 +18,10 @@ const getExperiencesData = (experiences: iNotionExperience[]) => {
   return Array.from(res.entries());
 };
 
-const ExperiencesView = ({ skills, experiences }: IExperiences) => {
+const Experiences = ({ skills, experiences }: IExperiences) => {
   const mainTextColor = useColorModeValue("gray.700", "gray.300");
   const aboutMe =
     experiences && experiences.find((el) => el.type === "About Me");
-  const allSkills = getSkillsData(skills);
   const filteredExperiences = getExperiencesData(experiences);
   return (
     <Stack
@@ -64,45 +53,7 @@ const ExperiencesView = ({ skills, experiences }: IExperiences) => {
         </Heading>
         {aboutMe && <Text color={mainTextColor}>{aboutMe.description}</Text>}
         <Stack>
-          {allSkills.map(([type, skillNames], i) => {
-            return (
-              <Box as="span" key={i} w="full">
-                <Text
-                  mr={5}
-                  fontWeight="semibold"
-                  as="span"
-                  color={mainTextColor}
-                >
-                  {type}
-                </Text>
-                {skillNames.map((skillName, index) => {
-                  return (
-                    <React.Fragment key={index}>
-                      <Text
-                        as="span"
-                        bgGradient="linear(0deg,#2a54f5,#31a6ce)"
-                        bgClip="text"
-                        fontWeight={400}
-                      >
-                        {skillName}
-                      </Text>
-                      {index !== skillNames.length - 1 && (
-                        <Text
-                          as="span"
-                          mx={2}
-                          fontSize={10}
-                          bgGradient="linear(to-r,#2a54f5,#31a6ce)"
-                          bgClip="text"
-                        >
-                          &#9679;
-                        </Text>
-                      )}
-                    </React.Fragment>
-                  );
-                })}
-              </Box>
-            );
-          })}
+          <Skills skills={skills} />
         </Stack>
       </Stack>
       {filteredExperiences.map(([type, experiences], i) => {
@@ -162,4 +113,4 @@ const ExperiencesView = ({ skills, experiences }: IExperiences) => {
   );
 };
 
-export default ExperiencesView;
+export default Experiences;

@@ -1,15 +1,4 @@
-export interface iNotionLink {
-  pageId: string;
-  created_time: string;
-  archived: boolean;
-  last_edited_time: string;
-  display: boolean;
-  icon?: string;
-  link?: string;
-  name: string;
-  type: "Social" | "Clickable";
-}
-
+import { iNotionExperience, iNotionSkill, iNotionLink } from ".";
 export const filterNotionLinks = (links: Object) => {
   // @ts-expect-error
   const { results } = links;
@@ -30,20 +19,6 @@ export const filterNotionLinks = (links: Object) => {
   return res as iNotionLink[];
 };
 
-export interface iNotionExperience {
-  pageId: string;
-  created_time: string;
-  archived: boolean;
-  last_edited_time: string;
-  display: boolean;
-  description: string;
-  link?: string;
-  name: string;
-  start?: string;
-  end?: string;
-  isPresent?: boolean;
-  type: "About Me" | "Work" | "Competition" | "Education" | "Descriptor";
-}
 export const filterNotionExperiences = (experiences: Object) => {
   // @ts-expect-error
   const { results } = experiences;
@@ -67,15 +42,7 @@ export const filterNotionExperiences = (experiences: Object) => {
   });
   return res as iNotionExperience[];
 };
-export interface iNotionSkill {
-  pageId: string;
-  created_time: string;
-  archived: boolean;
-  last_edited_time: string;
-  display: boolean;
-  name: string;
-  type: "Native Speaker" | "Exploring" | "Learning About";
-}
+
 export const filterNotionSkills = (skills: Object) => {
   // @ts-expect-error
   const { results } = skills;

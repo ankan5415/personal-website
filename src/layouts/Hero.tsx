@@ -1,39 +1,23 @@
 import React from "react";
-import {
-  Center,
-  Heading,
-  Text,
-  Stack,
-  useColorMode,
-  Box,
-  IconButton,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import {
-  iNotionExperience,
-  iNotionLink,
-} from "../util/notion/filterNotionData";
+import { Center, Heading, Text, Stack } from "@chakra-ui/react";
+import { iNotionExperience, iNotionLink } from "../util/notion";
 import * as IoIcons from "react-icons/io";
-import CardLink from "./CardLink";
-import IconLink from "./IconLink";
+import CardLink from "../components/CardLink";
+import IconLink from "../components/IconLink";
+import ThemeIcon from "../components/ThemeIcon";
 
-interface iHeroView {
-  age: number | String;
-  links: iNotionLink[];
-  experiences: iNotionExperience[];
-}
-
-interface iDynamicIcon {
-  name: string;
-}
-const DynamicIcon = ({ name }: iDynamicIcon) => {
+const DynamicIcon = ({ name }: { name: string }): JSX.Element => {
   // @ts-ignore
   const IconComponent = IoIcons[name];
   return <IconComponent />;
 };
 
-const HeroView = ({ age, links, experiences }: iHeroView) => {
-  const { toggleColorMode } = useColorMode();
+interface iHero {
+  age: number | String;
+  links: iNotionLink[];
+  experiences: iNotionExperience[];
+}
+const Hero = ({ age, links, experiences }: iHero) => {
   const iconLinks = links.filter((link) => !!link.icon);
   const cardLinks = links.filter((link) => !link.icon);
   const descriptor =
@@ -46,7 +30,7 @@ const HeroView = ({ age, links, experiences }: iHeroView) => {
       backgroundPosition={"center"}
     >
       <Stack mt="18rem" spacing="5">
-        <Heading as="h1" color={"gray.200"} textAlign="center" py={5}>
+        <Heading as="h1" color="gray.200" textAlign="center" py={5}>
           Hey, I&#39;m Ankur!
         </Heading>
         <Stack>
@@ -82,22 +66,11 @@ const HeroView = ({ age, links, experiences }: iHeroView) => {
           })}
         </Stack>
         <Center alignItems="center">
-          <IconButton
-            fontSize={"3xl"}
-            variant="ghost"
-            colorScheme={"whiteAlpha"}
-            color="gray.200"
-            aria-label="toggle theme"
-            onClick={() => toggleColorMode()}
-            icon={useColorModeValue(
-              <IoIcons.IoMdMoon />,
-              <IoIcons.IoMdSunny />
-            )}
-          />
+          <ThemeIcon />
         </Center>
       </Stack>
     </Center>
   );
 };
 
-export default HeroView;
+export default Hero;
