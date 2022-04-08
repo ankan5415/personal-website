@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Text, useColorModeValue } from "@chakra-ui/react";
-import { iNotionLink } from "../util/notion/filterNotionData";
+import { iNotionLink } from "../util/notion";
 
 interface iCardLink {
   link: iNotionLink;

@@ -25,13 +25,13 @@ const Hero = ({ age, links, experiences }: iHero) => {
   return (
     <Center
       bgImage={`linear-gradient(to left top, rgba(26, 81, 64, 0.4), rgba(9, 35, 62, 0.4)),
-      url('/images/IMG_0331.JPG')`}
+      url('/images/background-image.jpeg')`}
       backgroundSize="cover"
       backgroundPosition={"center"}
     >
       <Stack mt="18rem" spacing="5">
         <Heading as="h1" color="gray.200" textAlign="center" py={5}>
-          Hey, I&#39;m Muhammad!
+          Hey, I&#39;m Ankur!
         </Heading>
         <Stack>
           <Text
