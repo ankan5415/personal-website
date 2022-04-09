@@ -7,8 +7,8 @@ const theme = extendTheme({
     useSystemColorMode: true,
   },
   fonts: {
-    heading: "Catamaran",
-    body: "Catamaran",
+    heading: "Catamaran, sans-serif",
+    body: "Catamaran, sans-serif",
   },
   styles: {
     // @ts-expect-error
